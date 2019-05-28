@@ -65,11 +65,11 @@ public class AkkaCorner extends AllDirectives {
 				pathPrefix(segment("primes").slash(integerSegment()), primeCount ->
 					get(() ->
 							completeOKWithFuture(
-									CompletableFuture.<List<String>>supplyAsync(() ->
+									CompletableFuture.supplyAsync(() ->
 										primeService.getFirstNPrimes(primeCount)
 										.stream()
 										.map(String::valueOf)
-										.collect(Collectors.toList())), Jackson.<List<String>>marshaller())
+										.collect(Collectors.toList())), Jackson.marshaller())
 						)
 					)
 				);
